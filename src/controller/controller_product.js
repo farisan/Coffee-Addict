@@ -22,7 +22,7 @@ const get = async (req, res) => {
 const filter = async (req, res) => {
     try {
         console.log(req.query);
-        const response = await productRepo.filterProduct()
+        const response = await productRepo.filterProduct(req.query)
         res.status(200).json({
             result: response.rows,
         })

@@ -17,11 +17,28 @@ const getProduct = () => {
 };
 
 
-const filterProduct = () => {
+const filterProduct = (queryparams) => {
     return new Promise((resolve, reject) => {
+        let query = "select * from product ";
+        if (queryparams.sorting == "price_asc") {
+            query += "order by price_product asc";
+        }
+        if (queryparams.sorting == "price_desc") {
+            query += "order by price_product desc";
+        }
+        if (queryparams.sorting == "create_at_asc") {
+            query += "order by create_at asc";
+        }
+        if (queryparams.sorting == "create_at_desc") {
+            query += "order by create_at desc";
+        }
+        if (queryparams.sorting == "transactions_asc") {
+            query = "select product.*, transactions.quanty from product inner join transactions on transactions.id_product = product.id_product order by transactions.quanty asc";
+        }
+        if (queryparams.sorting == "transactions_desc") {
+            query = "select product.*, transactions.quanty from product inner join transactions on transactions.id_product = product.id_product order by transactions.quanty desc";
+        }
 
-        const query =
-            "select product.id_product, transactions.order_time, transactions.total from product inner join transactions on product.id_product = transactions.id_product order by product.id_product asc"
         postgreDb.query(query, (err, result) => {
             if (err) {
                 console.log(err);
