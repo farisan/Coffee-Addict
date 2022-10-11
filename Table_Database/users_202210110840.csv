@@ -1,0 +1,7 @@
+"id_users","displayname","lastname","password_user","email","phone","gender","birthday","address","picture_users"
+1,Captain,Morgan,captain123,captain@gmail.com,"085123456789",male  ,2000-01-01,Jakarta Utara,captainmorgan.jpg
+2,Angle,Calista,angelcalista123,angelcalista@gmail.com,"082529284524",female,1996-04-07,Bojong Gede,angelcalista.jpg
+3,Ferdy,Sambro,ferdysambro123,ferdysambro@gmail.com,"029481948193",male  ,1995-06-21,Sukapura,ferdysambo.jpg
+4,Yuki,Katrow,yukikatrow123,yukikatro@gmail.com,"082849299299",female,1995-06-29,Kelapa Gading,yukikatro.jpg
+5,Muhammad,Farisan,muhammadfarisan123,muhammadfarisan@gmail.com,"092483838383",male  ,1999-09-29,Jakarta Utara,Mfarisan.jpg
+6,Yeni,Nur,yeninur123,yeninur@gmail.com,"098395349944",female,2003-06-21,Jakarta Utara,yeninur.jpg
