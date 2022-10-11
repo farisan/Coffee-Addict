@@ -32,11 +32,11 @@ const getPromoId = (params) => {
 
 const createPromo = (body) => {
     return new Promise((resolve, reject) => {
-        const query = "insert into promo (name_promo, discount, start_promo, end_promo, describe_promo) values ($1,$2,$3,$4,$5)";
-        const { name_promo, discount, start_promo, end_promo, describe_promo } = body;
+        const query = "insert into promo (name_promo, discount, minimal_price, maximal_price, start_promo, end_promo, describe_promo, id_product) values ($1,$2,$3,$4,$5,$6,$7,$8)";
+        const { name_promo, discount, minimal_price, maximal_price, start_promo, end_promo, describe_promo, id_product } = body;
         postgreDb.query(
             query,
-            [name_promo, discount, start_promo, end_promo, describe_promo],
+            [name_promo, discount, minimal_price, maximal_price, start_promo, end_promo, describe_promo, id_product],
             (err, queryResult) => {
                 if (err) {
                     console.log(err);

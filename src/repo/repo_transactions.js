@@ -4,7 +4,12 @@ const postgreDb = require("../config/postgre");
 // untuk menampilkan semua data table users
 const getTransactions = () => {
     return new Promise((resolve, reject) => {
-        const query = "select * from transactions order by id_transaction asc";
+        const query =
+            "select * from transactions order by id_transaction asc";
+
+        // "select users.displayname, product.name_product, promo.name_promo, transactions.quanty, transactions.subtotal, transactions.tax, transactions.shipping_payment, transactions.payment, transactions.total, transactions.order_time from transactions inner join product on product.id_product = transactions.id_product inner join users on users.id_users = transactions.id_users inner join promo on promo.id_promo = transactions.id_promo inner join product on product.id_product"
+
+
         postgreDb.query(query, (err, result) => {
             if (err) {
                 console.log(err);

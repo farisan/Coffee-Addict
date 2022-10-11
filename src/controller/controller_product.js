@@ -1,4 +1,5 @@
 // const { response } = require("express");
+const { text } = require("express");
 const productRepo = require("../repo/repo_product.js");
 
 
@@ -68,8 +69,10 @@ const create = async (req, res) => {
     try {
         const response = await productRepo.createProduct(req.body)
         res.status(200).json({
-            result: response,
-        })
+            msg: "Data berhasil di tambahkan",
+            data: response.text = req.body,
+        });
+
     } catch (err) {
         res.status(500).json({
             msg: "Internal Server Error"

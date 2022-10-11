@@ -4,8 +4,8 @@ const express = require("express");
 
 const productRouter = require("./product.js"); // menghubungkan router utama router product
 const userRouter = require("./user.js") // menghubungkan router utama ke router user
-const voucherRouter = require("./promo.js") // menghubungkan router utama ke router promo
-const transactionsRouter = require("./transactions") // menghubungkan router utama ke router voucher
+const promoRouter = require("./promo.js") // menghubungkan router utama ke router promo
+const transactionsRouter = require("./transactions") // menghubungkan router utama ke router promo
 
 const mainRouter = express.Router();
 
@@ -19,7 +19,7 @@ const prefix = "/coffee/v1";
 // menyambungkan main router ke sub router
 mainRouter.use(`${prefix}/product`, productRouter);
 mainRouter.use(`${prefix}/user`, userRouter);
-mainRouter.use(`${prefix}/voucher`, voucherRouter);
+mainRouter.use(`${prefix}/promo`, promoRouter);
 mainRouter.use(`${prefix}/transactions`, transactionsRouter);
 
 
