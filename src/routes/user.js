@@ -1,15 +1,16 @@
 const express = require("express");
 const usersRouter = express.Router();
 
-
+// Koneksi ke controller user
 const { get, getId, create, edit, drop } = require("../controller/controller_user");
 
-// localhost:6060/coffee/v1/user/           <= (menampilkan isi tabel user dalam database)
-usersRouter.get("/", get);
-usersRouter.get("/:id_users", getId);
-usersRouter.post("/", create);      // <= (route input data kedalam database menggunakan method post)
-usersRouter.patch("/:id_users", edit); // <= (route untuk edit data berdasarkan id user)
-usersRouter.delete("/:id_users", drop) // <= (route untuk menghapus data berdasarkan id user)
+
+// Routes Tabel Users
+usersRouter.get("/", get);              // localhost:6060/coffee/users/             => ()
+usersRouter.get("/:id_users", getId);   // localhost:6060/coffee/users/:id_users    => (params)
+usersRouter.post("/", create);          // localhost:6060/coffee/users/             => (params)
+usersRouter.patch("/:id_users", edit);  // localhost:6060/coffee/users/:id_users    => (body,params)
+usersRouter.delete("/:id_users", drop)  // localhost:6060/coffee/users/:id_users    => (params)
 
 
 

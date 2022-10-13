@@ -1,7 +1,9 @@
-const postgreDb = require("../config/postgre");
+const postgreDb = require("../config/postgre");     //koneksi database
 
 
-// untuk menampilkan semua data table users
+/* =================================================================================== */
+
+// Get => Menampilkan semua data dalam tabel users
 const getUser = () => {
     return new Promise((resolve, reject) => {
         const query = "select * from users order by id_users asc";
@@ -15,7 +17,8 @@ const getUser = () => {
     });
 };
 
-// params => inputan berdasarkan data dari params  ex => localhost:6060/coffee/v1/user/(isi id user yang ingin di tampilkan)
+
+// GetId => Menampilkan data berdasarkan id users yang dicari
 const getUserId = (params) => {
     return new Promise((resolve, reject) => {
         const query = "select * from users where id_users = $1";
@@ -30,7 +33,7 @@ const getUserId = (params) => {
 };
 
 
-// memasukan data kedalam table users
+// Create => Input data dalam body kedalam database
 const createUser = (body) => {
     return new Promise((resolve, reject) => {
         const query = "insert into users (displayname, lastname, password_user, email, phone, gender, birthday, address, picture_users) values ($1,$2,$3,$4,$5,$6,$7,$8,$9)";
@@ -48,6 +51,8 @@ const createUser = (body) => {
     });
 };
 
+
+// Edit => Edit data yang sudah ada dalam database berdasarkan id users
 const editUser = (body, params) => {
     return new Promise((resolve, reject) => {
         let query = "update users set ";            // gunakan spasi di akhir setelah set
@@ -74,6 +79,8 @@ const editUser = (body, params) => {
     });
 };
 
+
+// Delete => menghapus data dalam database berdasarkan id users
 const deleteUser = (params) => {
     return new Promise((resolve, reject) => {
         const query = "delete from users where id_users = $1";
@@ -88,6 +95,10 @@ const deleteUser = (params) => {
 };
 
 
+
+
+
+// Nama function di atas di bungkus menjadi object
 const userRepo = {
     getUser,
     getUserId,

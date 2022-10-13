@@ -1,10 +1,7 @@
-// controller CRUD Data
-
-
-// mengkoneksikan/memanggil file repo_user 
+// Mengkoneksikan file repo users ke controller users
 const userRepo = require("../repo/repo_user");
 
-
+/* ============================================================== */
 
 // Menampilkan semua values yang ada pada table users
 const get = async (req, res) => {
@@ -43,7 +40,9 @@ const create = async (req, res) => {
     try {
         const response = await userRepo.createUser(req.body);
         res.status(201).json({
-            result: response,
+            // result: response,
+            msg: "Create Data Success",
+            data: response.text = req.body
         });
     } catch (err) {
         res.status(500).json({
@@ -58,7 +57,9 @@ const edit = async (req, res) => {
     try {
         const response = await userRepo.editUser(req.body, req.params)
         res.status(201).json({
-            result: response,
+            // result: response,
+            msg: "Edit Data Success",
+            data: response.text = req.body
         })
     } catch (err) {
         res.status(500).json({
@@ -68,13 +69,13 @@ const edit = async (req, res) => {
 };
 
 
-
 // Delete data berdasarkan ID yang dipilih
 const drop = async (req, res) => {
     try {
         const response = await userRepo.deleteUser(req.params)
         res.status(201).json({
-            result: response,
+            // result: response,
+            msg: "Delete Data Success",
         })
     } catch (err) {
         res.status(500).json({
@@ -84,6 +85,8 @@ const drop = async (req, res) => {
 }
 
 
+
+// Nama function di atas di bungkus menjadi object
 const userController = {
     get,
     getId,

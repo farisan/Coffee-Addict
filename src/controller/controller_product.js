@@ -1,14 +1,16 @@
 // const { response } = require("express");
-const { text } = require("express");
-const productRepo = require("../repo/repo_product.js");
+// const { text } = require("express");
+
+// Menghubungan Product repo ke controller product
+const repoProduct = require("../repo/repo_product.js");
 
 
-
+/* ============================================================= */
 
 // Get data || menampilkan data yang ada di database
 const get = async (req, res) => {
     try {
-        const response = await productRepo.getProduct();
+        const response = await repoProduct.getProduct();
         res.status(200).json({
             result: response.rows,
         });
@@ -23,7 +25,7 @@ const get = async (req, res) => {
 const filter = async (req, res) => {
     try {
         console.log(req.query);
-        const response = await productRepo.filterProduct(req.query)
+        const response = await repoProduct.filterProduct(req.query)
         res.status(200).json({
             result: response.rows,
         })
@@ -34,42 +36,12 @@ const filter = async (req, res) => {
     }
 }
 
-
-const getSearch = async (req, res) => {
-    try {
-        console.log(req.query);
-        const response = await productRepo.getSearch(req.query)
-        res.status(200).json({
-            result: response.rows,
-        })
-    } catch (err) {
-        res.status(500).json({
-            msg: "Internal Server Error"
-        })
-    }
-}
-
-
-
-const getCategory = async (req, res) => {
-    try {
-        console.log(req.params);
-        const response = await productRepo.getCategory(req.params)
-        res.status(200).json({
-            result: response.rows,
-        })
-    } catch (err) {
-        res.status(500).json({
-            msg: "Internal Server Error"
-        })
-    }
-}
 
 const create = async (req, res) => {
     try {
-        const response = await productRepo.createProduct(req.body)
+        const response = await repoProduct.createProduct(req.body)
         res.status(200).json({
-            msg: "Data berhasil di tambahkan",
+            msg: "Create Data Success",
             data: response.text = req.body,
         });
 
@@ -80,11 +52,14 @@ const create = async (req, res) => {
     }
 }
 
+
 const edit = async (req, res) => {
     try {
-        const response = await productRepo.editProduct(req.body, req.params)
+        const response = await repoProduct.editProduct(req.body, req.params)
         res.status(200).json({
-            result: response,
+            // result: response,
+            msg: "Edit Data Success",
+            data: response.text = req.body
         });
     } catch (err) {
         res.status(500).json({
@@ -95,9 +70,10 @@ const edit = async (req, res) => {
 
 const drop = async (req, res) => {
     try {
-        const response = await productRepo.deleteProduct(req.params)
+        const response = await repoProduct.deleteProduct(req.params)
         res.status(200).json({
-            result: response,
+            // result: response,
+            msg: "Delete Data Success"
         });
     } catch (err) {
         res.status(500).json({
@@ -107,15 +83,15 @@ const drop = async (req, res) => {
 }
 
 
+
+
 const productController = {
     get,
-    getSearch,
-    getCategory,
+    filter,
     create,
     edit,
-    drop,
-    filter
-    // search
+    drop
+
 }
 
 module.exports = productController;
